@@ -25,11 +25,11 @@ const handleDeleteUser=async(req,res)=>{
 const getUpdateUser=async(req,res)=>{
     let id=req.params.id
     let user=await userService.getUserById(id)
-    let userData={}
-    if (user && user.length>0) {
-        userData=user[0]
-    }
-    console.log("Check User",user);
+    let userData=user
+    // if (user && user.length>0) {
+    //     userData=user[0]
+    // }
+    // console.log("Check User",user);
     return(res.render("user-update.ejs", {userData}))
 }
 const handleUpdateUser=async(req,res)=>{
