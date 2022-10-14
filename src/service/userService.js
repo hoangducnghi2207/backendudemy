@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import mysql from 'mysql2/promise'
 import Bluebird from 'bluebird';
 import db from '../models/models';
+import { raw } from 'body-parser';
 const salt = bcrypt.genSaltSync(10);
 const hashUserPassword = (userPassword) => {
     let hashPassword = bcrypt.hashSync(userPassword, salt);
@@ -48,6 +49,18 @@ const getUserList = async () => {
     //     database: 'jwt',
     //     Promise: Bluebird
     // })
+    
+    //test relationships
+    let role=await db.Role.findAll({
+        include:{model:db.Group, where:{id:1}}, 
+        raw:true,
+        nest:true
+    })
+    console.log("check new user",role);
+
+
+
+
     let users = []
     users = await db.User.findAll()
     return users
