@@ -16,7 +16,7 @@ connectDB();
 //initWebRoutes(app);
 initWebRoutes(app);
 
-const PORT=3000
+const PORT=4000
 app.listen(PORT,()=>{
     console.log("JWT BACKEND RUNNING from port" +PORT);
 })
