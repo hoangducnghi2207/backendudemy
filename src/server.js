@@ -5,6 +5,8 @@ require("dotenv").config()
 import bodyParser from "body-parser";
 import connectDB from "./config/configDB";
 import initApiRoutes from "./routes/api";
+import {createJwt,verifyToken} from "./middleware/jwtAction"
+import cookieParser from "cookie-parser";
 const app =express();
 app.use(function (req, res, next) {
 
@@ -29,8 +31,12 @@ configeViewEngine(app);
 //config body-parser    
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+//config cookie-parser
+app.use(cookieParser())
 //test connectDB
 connectDB();
+
+
 //initWebRoutes(app);
 initWebRoutes(app);
 initApiRoutes(app)
